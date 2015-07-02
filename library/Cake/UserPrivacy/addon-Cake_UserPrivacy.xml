@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<addon addon_id="Cake_UserPrivacy" title="Cake\UserPrivacy" version_string="1.0.0 Alpha 1" version_id="1000030" url="https://forumcake.com/" install_callback_class="Cake\UserPrivacy\Install_Controller" install_callback_method="install" uninstall_callback_class="Cake\UserPrivacy\Install_Controller" uninstall_callback_method="uninstall">
+  <admin_navigation>
+    <navigation navigation_id="userPrivacy" parent_navigation_id="users" display_order="30" link="" admin_permission_id="user" debug_only="0" hide_no_children="1"/>
+  </admin_navigation>
+  <admin_permissions/>
+  <admin_style_properties/>
+  <admin_templates/>
+  <admin_template_modifications/>
+  <code_events/>
+  <code_event_listeners/>
+  <cron/>
+  <email_templates/>
+  <email_template_modifications/>
+  <optiongroups>
+    <option option_id="cake_userPrivacy_modules" edit_format="callback" data_type="array" can_backup="1">
+      <default_value>a:2:{s:19:"CustomPrivacyErrors";i:1;s:17:"UserPrivacyGroups";i:1;}</default_value>
+      <edit_format_params>Cake\Option_Explain::render</edit_format_params>
+      <sub_options>*</sub_options>
+      <relation group_id="cake" display_order="1"/>
+    </option>
+  </optiongroups>
+  <permissions>
+    <permission_groups/>
+    <permissions/>
+    <interface_groups/>
+  </permissions>
+  <phrases>
+    <phrase title="admin_navigation_userPrivacy" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[User Privacy]]></phrase>
+    <phrase title="cake_please_select_at_least_one_privacy_option" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Please select at least one privacy option.]]></phrase>
+    <phrase title="cake_usable_for_user_privacy_options" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Usable for User Privacy Options]]></phrase>
+    <phrase title="cake_userPrivacy" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[User Privacy]]></phrase>
+    <phrase title="cake_userPrivacy_customPrivacyErrors" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Custom Privacy Errors]]></phrase>
+    <phrase title="cake_userPrivacy_customPrivacyErrors_desc" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Create custom messages to display when user actions are blocked by privacy settings]]></phrase>
+    <phrase title="cake_userPrivacy_userPrivacyGroups" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[User Privacy Groups]]></phrase>
+    <phrase title="cake_userPrivacy_userPrivacyGroups_desc" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Add new privacy options for viewing/posting on profile/news feed/identities & sending conversations]]></phrase>
+    <phrase title="option_cake_userPrivacy_modules" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Enabled Modules]]></phrase>
+    <phrase title="option_cake_userPrivacy_modules_explain" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[This option can't be edited manually. It is edited only via the <a href="admin.php?add-ons/Cake_UserPrivacy/modules">Modules</a> page.]]></phrase>
+  </phrases>
+  <route_prefixes>
+    <route_type type="admin">
+      <prefix original_prefix="custom-privacy-errors" class="Cake\UserPrivacy\CustomPrivacyErrors\Route_PrefixAdmin_CustomPrivacyErrors" build_link="data_only"/>
+      <prefix original_prefix="user-privacy-groups" class="Cake\UserPrivacy\UserPrivacyGroups\Route_PrefixAdmin_UserPrivacyGroups" build_link="data_only"/>
+    </route_type>
+  </route_prefixes>
+  <style_properties/>
+  <templates/>
+  <public_template_modifications>
+    <modification template="account_privacy" modification_key="cake_userPrivacy_userPrivacyGroups_accountPrivacy" description="" execution_order="10" enabled="1" action="preg_replace">
+      <find><![CDATA[#{xen:checked "{\$visitor\.allow_([a-z_]*)} != 'none' "}(.*<select name="allow_[a-z_]*" class="textCtrl autoSize" id="ctrl_allow_[a-z_]*">.*)(</select>)#Us]]></find>
+      <replace><![CDATA[{xen:checked "{$visitor.allow_${1}} != 'none' || ({$userPrivacyGroups.{$visitor.allow_${1}_group_cake}} && in_array('allow_${1}', {$userPrivacyGroups.{$visitor.allow_${1}_group_cake}.userPrivacyOptions}))"}${2}
+<xen:foreach loop="$userPrivacyGroups" key="$userPrivacyGroupId" value="$userPrivacyGroup">
+	<xen:if is="in_array('allow_${1}', {$userPrivacyGroup.userPrivacyOptions})">
+		<option value="cake_{$userPrivacyGroupId}" {xen:selected "{$visitor.allow_${1}_group_cake} == {$userPrivacyGroupId} "}>{$userPrivacyGroup.title}</option>
+	</xen:if>
+</xen:foreach>
+${3}]]></replace>
+    </modification>
+  </public_template_modifications>
+  <bb_code_media_sites/>
+  <bb_codes/>
+</addon>
