@@ -37,12 +37,7 @@
     <phrase title="option_cake_userPrivacy_modules" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[Enabled Modules]]></phrase>
     <phrase title="option_cake_userPrivacy_modules_explain" version_id="1000030" version_string="1.0.0 Alpha 1"><![CDATA[This option can't be edited manually. It is edited only via the <a href="admin.php?add-ons/Cake_UserPrivacy/modules">Modules</a> page.]]></phrase>
   </phrases>
-  <route_prefixes>
-    <route_type type="admin">
-      <prefix original_prefix="custom-privacy-errors" class="Cake\UserPrivacy\CustomPrivacyErrors\Route_PrefixAdmin_CustomPrivacyErrors" build_link="data_only"/>
-      <prefix original_prefix="user-privacy-groups" class="Cake\UserPrivacy\UserPrivacyGroups\Route_PrefixAdmin_UserPrivacyGroups" build_link="data_only"/>
-    </route_type>
-  </route_prefixes>
+  <route_prefixes/>
   <style_properties/>
   <templates/>
   <public_template_modifications>
