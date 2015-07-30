@@ -20,16 +20,16 @@ trait Trait_DataWriter
             }
             $userPrivacyGroupNames = preg_split('#,\s*#', $userPrivacyGroupNames);
         }
-        
+
         if (!$userPrivacyGroupNames) {
             $userPrivacyGroupNames = '';
             return true;
         }
-        
+
         $userPrivacyGroupNames = array_unique($userPrivacyGroupNames);
         sort($userPrivacyGroupNames, SORT_ASC);
         $userPrivacyGroupNames = implode(',', $userPrivacyGroupNames);
-        
+
         return true;
     }
 
@@ -46,7 +46,7 @@ trait Trait_DataWriter
     {
         $criteriaFiltered = \XenForo_Helper_Criteria::prepareCriteriaForSave($criteria);
         $criteria = serialize($criteriaFiltered);
-        
+
         if (!$criteriaFiltered && !empty($fieldData['required'])) {
             $this->error(new \XenForo_Phrase('please_select_criteria_that_must_be_met'), 'user_criteria');
             return false;
@@ -70,16 +70,16 @@ trait Trait_DataWriter
             }
             $userPrivacyOptions = preg_split('#,\s*#', $userPrivacyOptions);
         }
-        
+
         if (!$userPrivacyOptions) {
             $userPrivacyOptions = '';
             return true;
         }
-        
+
         $userPrivacyOptions = array_unique($userPrivacyOptions);
         sort($userPrivacyOptions, SORT_ASC);
         $userPrivacyOptions = implode(',', $userPrivacyOptions);
-        
+
         return true;
     }
 
@@ -95,12 +95,12 @@ trait Trait_DataWriter
         if (!is_array($userGroupIds)) {
             $userGroupIds = preg_split('#,\s*#', $userGroupIds);
         }
-        
+
         $userGroupIds = array_map('intval', $userGroupIds);
         $userGroupIds = array_unique($userGroupIds);
         sort($userGroupIds, SORT_NUMERIC);
         $userGroupIds = implode(',', $userGroupIds);
-        
+
         return true;
     }
 }

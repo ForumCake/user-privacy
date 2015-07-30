@@ -10,13 +10,13 @@ class Install_Controller
             // note: this can't be phrased
             throw new \XenForo_Exception('This add-on requires XenForo 1.3.0 or higher.', true);
         }
-        
+
         $addOns = \XenForo_Application::get('addOns');
         if (!isset($addOns['Cake'])) {
             // note: this can't be phrased
             throw new \XenForo_Exception('This add-on requires Cake 1.0.0 or higher.', true);
         }
-        
+
         \Cake\Install_Controller::install($existingAddOn, $addOnData, $xml);
     }
 

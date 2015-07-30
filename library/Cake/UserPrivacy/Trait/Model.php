@@ -34,7 +34,7 @@ trait Trait_Model
                 'value' => 'allow_receive_news_feed'
             )
         );
-        
+
         return $privacyOptions;
     }
 }
